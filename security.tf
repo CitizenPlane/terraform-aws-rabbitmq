@@ -44,14 +44,14 @@ resource "aws_security_group" "rabbit-cluster" {
     to_port   = 5672
     protocol  = "tcp"
 
-    cidr_blocks = ["${var.ingress_private_cidr_blocks}"]
+    cidr_blocks = ["${var.ingress_public_cidr_blocks}"]
   }
 
   ingress {
     from_port = 15672
     to_port   = 15672
     protocol  = "tcp"
-    cidr_blocks = ["${var.ingress_private_cidr_blocks}"]
+    cidr_blocks = ["${var.ingress_public_cidr_blocks}"]
   }
 
   egress {
