@@ -14,7 +14,7 @@ resource "aws_security_group" "lb-external" {
     from_port   = 0
     to_port     = 0
     protocol    = -1
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = "${var.internet_public_cidr_blocks}"
   }
 
   tags {
@@ -31,13 +31,6 @@ resource "aws_security_group" "rabbit-cluster" {
   name        = "${var.name}-${var.environment}-rabbit-cluster"
   vpc_id      = "${var.vpc_id}"
   description = "Allows traffic from and to the EC2 instances of the ${var.name} Rabbit Cluster"
-
-  ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = -1
-    cidr_blocks = ["${var.subnets_cidr_block}", "${var.subnets_cidr_block_public}"]
-  }
 
   ingress {
     from_port = 5672
@@ -76,13 +69,6 @@ resource "aws_security_group" "rabbit-node" {
   name = "${var.name}-${var.environment}-rabbit-node"
   vpc_id      = "${var.vpc_id}"
   description = "Allows traffic from and to the EC2 instances of the ${var.name} Rabbit Nodes"
-
-  ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = -1
-    cidr_blocks = ["${var.subnets_cidr_block}", "${var.subnets_cidr_block_public}"]
-  }
 
   ingress {
     from_port   = 4369

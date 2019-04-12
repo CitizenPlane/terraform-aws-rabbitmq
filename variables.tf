@@ -76,14 +76,6 @@ variable "associate_public_ip_address" {
   description = "Should created instances be publicly accessible (if the SG allows)"
 }
 
-variable "subnets_cidr_block" {
-  description = "Internal range allow to access the cluster"
-}
-
-variable "subnets_cidr_block_public" {
-  description = "Internal range allow to access the cluster"
-}
-
 # ------------------------------------------------------
 #  Frontend Http
 # ------------------------------------------------------
