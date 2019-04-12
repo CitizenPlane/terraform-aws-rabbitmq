@@ -41,9 +41,9 @@ resource "aws_security_group" "rabbit-cluster" {
   }
 
   ingress {
-    from_port = 15672
-    to_port   = 15672
-    protocol  = "tcp"
+    from_port   = 15672
+    to_port     = 15672
+    protocol    = "tcp"
     cidr_blocks = ["${var.ingress_public_cidr_blocks}"]
   }
 
@@ -64,9 +64,8 @@ resource "aws_security_group" "rabbit-cluster" {
   }
 }
 
-
 resource "aws_security_group" "rabbit-node" {
-  name = "${var.name}-${var.environment}-rabbit-node"
+  name        = "${var.name}-${var.environment}-rabbit-node"
   vpc_id      = "${var.vpc_id}"
   description = "Allows traffic from and to the EC2 instances of the ${var.name} Rabbit Nodes"
 
@@ -104,5 +103,4 @@ resource "aws_security_group" "rabbit-node" {
     protocol    = "icmp"
     cidr_blocks = "${var.internet_public_cidr_blocks}"
   }
-
 }

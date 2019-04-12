@@ -83,7 +83,6 @@ variable "associate_public_ip_address" {
 #   description = "External ELB to use to balance the cluster"
 # }
 
-
 # Network Security
 variable "ingress_public_cidr_blocks" {
   description = "A list of default CIDR blocks to allow traffic from (public usage)"
