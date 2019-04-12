@@ -92,7 +92,7 @@ cluster_formation.aws.secret_key               = ${AWS_SECRET_KEY}
 cluster_formation.aws.use_autoscaling_group    = true
 EndOfConfig
 
-RABBITMQ_PLUGINS="[rabbitmq_management,rabbitmq_peer_discovery_aws,rabbitmq_queue_master_balancer,rabbitmq_tracing]."
+RABBITMQ_PLUGINS="[rabbitmq_shovel,rabbitmq_shovel_management,rabbitmq_management,rabbitmq_peer_discovery_aws,rabbitmq_queue_master_balancer,rabbitmq_tracing]."
 
 echo $RABBITMQ_PLUGINS > /etc/rabbitmq/enabled_plugins
 
