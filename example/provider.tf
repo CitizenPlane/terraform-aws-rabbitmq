@@ -23,7 +23,7 @@ module "alb" {
   # # Note: only the servers need an ALB (only the servers expose an UI)
   autoscaling_group = "${module.rabbit.autoscaling_group}"
 
-  allowed_inbound_cidr_blocks = "${var.public_cidr_block}"
+  allowed_inbound_cidr_blocks = "${var.ingress_public_cidr_blocks}"
   alb_security_group          = "${module.rabbit.security_group_id}"
 
   # # External Settings

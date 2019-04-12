@@ -25,7 +25,8 @@ cluster_fqdn = "test"
 
 
 # Assuming you have a router53 managed domain
-domain_name = "domain.com"
+domain_name     = "domain.com"
+certificate_arn = ""
 
 ## Network
 

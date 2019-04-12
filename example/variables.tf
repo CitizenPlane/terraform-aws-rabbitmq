@@ -61,13 +61,30 @@ variable "cluster_fqdn" {
   description = "a subdomain for your route53 dns"
 }
 
-variable "ingress_private_cidr_blocks" {}
-variable "ingress_public_cidr_blocks" {}
-variable "ingress_private_cidr_blocks" {}
+variable "ingress_private_cidr_blocks" {
+  type = "list"
+}
+
+variable "ingress_public_cidr_blocks" {
+  type = "list"
+}
+
+variable "internet_public_cidr_blocks" {
+  type = "list"
+}
 
 variable "external_subnets" {
   description = "A list of one or more availability zones for the ASG"
+  type        = "list"
 }
 
 variable "vpc_id" {}
 variable "region" {}
+
+variable "certificate_arn" {}
+
+variable "subnet_ids" {
+  type = "list"
+}
+
+variable "domain_name" {}
