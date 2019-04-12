@@ -7,11 +7,11 @@ variable "profile" {
 }
 
 variable "environment" {
-  description = "type of environment you are deployubg (eg: dev, prod, staging)"
+  description = "type of environment you are deploying (eg: dev, prod, staging)"
 }
 
 variable "cluster_name" {
-  description = "Name of your deployment (eg: intercloud)"
+  description = "Name of your deployment (eg: CitizenPlane)"
 }
 
 variable "desired_capacity" {
