@@ -12,10 +12,10 @@ resource "aws_lb" "lb_internal" {
 }
 
 resource "aws_lb" "lb_internal_net" {
-  name            = "${var.name}-net-int"
-  internal        = true
+  name               = "${var.name}-net-int"
+  internal           = true
   load_balancer_type = "network"
-  subnets         = ["${var.subnet_ids}"]
+  subnets            = ["${var.subnet_ids}"]
 
   enable_cross_zone_load_balancing = true
   enable_deletion_protection       = false
@@ -23,7 +23,6 @@ resource "aws_lb" "lb_internal_net" {
 
   tags {}
 }
-
 
 resource "aws_lb_listener" "mgmt_internal" {
   load_balancer_arn = "${aws_lb.lb_internal.arn}"

@@ -13,7 +13,6 @@ module "alb" {
   internal    = false
   domain_name = "${var.domain_name}"
   datacenter  = "${var.region}"
-  
 
   cluster_fqdn = "${var.cluster_fqdn}"
 
@@ -25,7 +24,7 @@ module "alb" {
   autoscaling_group = "${module.rabbit.autoscaling_group}"
 
   allowed_inbound_cidr_blocks = "${var.public_cidr_block}"
-  alb_security_group = "${module.rabbit.security_group_id}"
+  alb_security_group          = "${module.rabbit.security_group_id}"
 
   # # External Settings
   certificate_arn = "${var.certificate_arn}"
@@ -35,22 +34,22 @@ module "alb" {
 module "rabbit" {
   source = "../"
 
-  name         = "${var.cluster_name}"
-  environment  = "${var.environment}"
+  name        = "${var.cluster_name}"
+  environment = "${var.environment}"
 
   erl_secret_cookie = "${var.erl_secret_cookie}"
-  aws_access_key = "${var.aws_access_key}"
-  aws_secret_key = "${var.aws_secret_key}"
+  aws_access_key    = "${var.aws_access_key}"
+  aws_secret_key    = "${var.aws_secret_key}"
 
   cluster_fqdn = "${var.cluster_fqdn}"
 
-  region                   = "${var.region}"
-  ssh_key_name             = "${var.ssh_key_name}"
-  desired_capacity = "${var.desired_capacity}"
-  instance_ebs_optimized   = "${var.instance_ebs_optimized}"
+  region                 = "${var.region}"
+  ssh_key_name           = "${var.ssh_key_name}"
+  desired_capacity       = "${var.desired_capacity}"
+  instance_ebs_optimized = "${var.instance_ebs_optimized}"
 
-  vpc_id             = "${var.vpc_id}"
-  external_subnets   = "${var.external_subnets}"
+  vpc_id           = "${var.vpc_id}"
+  external_subnets = "${var.external_subnets}"
 
   root_volume_size   = "${var.root_volume_size}"
   rabbit_volume_size = "${var.rabbit_volume_size}"
@@ -63,7 +62,7 @@ module "rabbit" {
   ingress_public_cidr_blocks  = "${var.ingress_public_cidr_blocks}"
   internet_public_cidr_blocks = "${var.internet_public_cidr_blocks}"
 
-  instance_type    = "${var.instance_type}"
+  instance_type = "${var.instance_type}"
 
   az_count = "${var.az_count}"
 
