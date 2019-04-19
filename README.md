@@ -1,5 +1,6 @@
-# Rabbitmq AWS Module
+![licence](https://img.shields.io/github/license/citizenplane/terraform-aws-rabbitmq.svg)
 
+# Rabbitmq AWS Module
 This repository is a set of two modules:
 - One to create an Auto Scaling Group that will bind rabbitmq nodes together using the rabbitmq plugins:
   [rabbitmq_peer_discovery_aws](https://www.rabbitmq.com/cluster-formation.html#peer-discovery-aws)
