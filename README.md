@@ -48,8 +48,8 @@ module "rabbit" {
   # Subnets Zone where the ASG will create your EC2 instances
   external_subnets = ""
 
-  root_volume_size   = "${var.root_volume_size}" # /
-  rabbit_volume_size = "${var.rabbit_volume_size}" # /var/lib/rabbitmq
+  root_volume_size   = 20 # /
+  rabbit_volume_size = 50 # /var/lib/rabbitmq
 
   associate_public_ip_address = true
 
