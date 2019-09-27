@@ -90,9 +90,19 @@ cluster_formation.aws.region                   = ${AWS_REGION}
 cluster_formation.aws.access_key_id            = ${AWS_ACCESS_KEY}
 cluster_formation.aws.secret_key               = ${AWS_SECRET_KEY}
 cluster_formation.aws.use_autoscaling_group    = true
+
+
 EndOfConfig
 
-RABBITMQ_PLUGINS="[rabbitmq_shovel,rabbitmq_shovel_management,rabbitmq_management,rabbitmq_peer_discovery_aws,rabbitmq_queue_master_balancer,rabbitmq_tracing]."
+RABBITMQ_PLUGINS_FOLDER="/usr/lib/rabbitmq/plugins"
+
+mkdir -p $RABBITMQ_PLUGINS_FOLDER
+
+wget "https://github.com/noxdafox/rabbitmq-message-deduplication/releases/download/0.4.2/elixir-1.8.2.ez" -O "$RABBITMQ_PLUGINS_FOLDER/elixir-1.8.2.ez"
+wget "https://github.com/noxdafox/rabbitmq-message-deduplication/releases/download/0.4.2/rabbitmq_message_deduplication-0.4.2.ez" -O "$RABBITMQ_PLUGINS_FOLDER/rabbitmq_message_deduplication-0.4.2.ez"
+wget "https://github.com/Ayanda-D/rabbitmq-queue-master-balancer/releases/download/v0.0.5/rabbitmq_queue_master_balancer-0.0.5.ez" -O "$RABBITMQ_PLUGINS_FOLDER/rabbitmq_queue_master_balancer-0.0.5.ez"
+
+RABBITMQ_PLUGINS="[rabbitmq_shovel,rabbitmq_shovel_management,rabbitmq_management,rabbitmq_peer_discovery_aws,rabbitmq_queue_master_balancer,rabbitmq_tracing,rabbitmq_message_deduplication]."
 
 echo $RABBITMQ_PLUGINS > /etc/rabbitmq/enabled_plugins
 
@@ -109,8 +119,8 @@ echo "deb https://dl.bintray.com/rabbitmq/debian $(lsb_release -sc) main" | sudo
 
 sleep $RANDOM_START
 
-apt-get update
-apt-get install -y \
+apt update
+apt install -yq \
     apt-transport-https \
     ca-certificates \
     curl \
