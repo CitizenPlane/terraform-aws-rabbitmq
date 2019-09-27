@@ -119,8 +119,10 @@ echo "deb https://dl.bintray.com/rabbitmq/debian $(lsb_release -sc) main" | sudo
 
 sleep $RANDOM_START
 
+export DEBIAN_FRONTEND=noninteractive
+
 apt update
-apt install -yq \
+apt install -y \
     apt-transport-https \
     ca-certificates \
     curl \
