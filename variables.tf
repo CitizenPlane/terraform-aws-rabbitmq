@@ -36,7 +36,7 @@ variable "aws_secret_key" {
 variable "cluster_fqdn" {}
 
 # ------------------------------------------------------
-#  EC2 parameters 
+#  EC2 parameters
 # ------------------------------------------------------
 
 variable "image_id" {
@@ -60,7 +60,7 @@ variable "rabbit_volume_size" {
 }
 
 # ------------------------------------------------------
-#  Network - VPC  parameters 
+#  Network - VPC  parameters
 # ------------------------------------------------------
 
 variable "vpc_id" {
@@ -120,5 +120,14 @@ variable "memory_low_limit" {
 }
 
 variable "desired_capacity" {
-  description = "defined how many node you want"
+  description = "defined how many node you want in your autoscaling group"
 }
+
+variable "autoscaling_min_size" {
+  description = "defined the minimum amount of the nodes you want in your autoscaling group"
+}
+
+variable "autoscaling_max_size" {
+  description = "defined the maximum amount of the nodes you want in your autoscaling group"
+}
+

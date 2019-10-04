@@ -5,7 +5,7 @@ This repository is a set of two modules:
 - One to create an Auto Scaling Group that will bind rabbitmq nodes together using the rabbitmq plugins:
   [rabbitmq_peer_discovery_aws](https://www.rabbitmq.com/cluster-formation.html#peer-discovery-aws)
 
-- The other to declare two new entries on a private route53 zone, and bind them to a load balencer for the web interface management plugin 
+- The other to declare two new entries on a private route53 zone, and bind them to a load balencer for the web interface management plugin
 and the default rabbitmq TCP port in order to open new connections and channels.
 
   ![cloudcraft_schema](https://raw.githubusercontent.com/CitizenPlane/terraform-aws-rabbitmq/master/_docs/RabbitMQClusterAWS.png)
@@ -42,6 +42,8 @@ module "rabbit" {
   region                 = "eu-west-3"
   ssh_key_name           = "ft_ssh_key"
   desired_capacity       = 3
+  autoscaling_min_size   = 3
+  autoscaling_max_size   = 5
   instance_ebs_optimized = false
 
   vpc_id = "vpc_id"
