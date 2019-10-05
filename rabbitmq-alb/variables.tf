@@ -4,15 +4,6 @@ variable "name" {
   description = "ELB name, e.g cdn"
 }
 
-variable "allowed_inbound_cidr_blocks" {
-  type        = "list"
-  description = "Allaowed inbound CIDR blocks"
-}
-
-variable "datacenter" {
-  description = "Datacenter name, e.g eu-central-1"
-}
-
 variable "subnet_ids" {
   type        = "list"
   description = "Comma separated list of subnet IDs"

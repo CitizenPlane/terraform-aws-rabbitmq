@@ -1,6 +1,6 @@
 # Your aws profile setup in ~/.aws/credentials
 profile = "default"
-region = ""
+region  = ""
 
 # Id of the VPC you want to use
 vpc_id = ""
