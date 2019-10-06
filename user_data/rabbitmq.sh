@@ -50,6 +50,8 @@ export ERL_SECRET_COOKIE="${ERL_SECRET_COOKIE}"
 export AWS_SECRET_KEY="${AWS_SECRET_KEY}"
 export AWS_ACCESS_KEY="${AWS_ACCESS_KEY}"
 export CLUSTER_NAME=${CLUSTER_NAME}
+export RABBITMQ_VERSION=${RABBITMQ_VERSION}
+export ERLANG_VERSION=${ERLANG_VERSION}
 
 mkdir -p /etc/rabbitmq
 
@@ -109,23 +111,35 @@ echo $RABBITMQ_PLUGINS > /etc/rabbitmq/enabled_plugins
 # ----------------------------------------
 # Install Rabbitmq
 # ----------------------------------------
+## The configuration bellow was inspired by the official rabbtimq instalation guide.
+## Link: https://www.rabbitmq.com/install-debian.html#apt-bintray
 
-wget -O- https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add -
-echo "deb https://packages.erlang-solutions.com/ubuntu bionic contrib" | sudo tee /etc/apt/sources.list.d/erlang.list
+apt-get update -y
 
-wget -O- https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc | sudo apt-key add -
-wget -O- https://www.rabbitmq.com/rabbitmq-release-signing-key.asc | sudo apt-key add -
-echo "deb https://dl.bintray.com/rabbitmq/debian $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/rabbitmq.list
+## Install prerequisites
+apt-get install curl gnupg -y
+
+## Install RabbitMQ signing key
+curl -fsSL https://github.com/rabbitmq/signing-keys/releases/download/2.0/rabbitmq-release-signing-key.asc | apt-key add -
+
+## Add Bintray repositories that provision latest RabbitMQ and Erlang
+tee /etc/apt/sources.list.d/bintray.rabbitmq.list <<EOF
+## Installs erlang and rabbitmq respecting the versions configured versions by user
+## To see versions you can use, look the variables.tf file.
+deb https://dl.bintray.com/rabbitmq-erlang/debian $(lsb_release -sc) ${ERLANG_VERSION}
+deb https://dl.bintray.com/rabbitmq/debian $(lsb_release -sc) ${RABBITMQ_VERSION}
+EOF
 
 sleep $RANDOM_START
 
 export DEBIAN_FRONTEND=noninteractive
 
-apt update
-apt install -y \
+## Update package indices
+apt-get update -y
+
+apt-get install -y --fix-missing \
     apt-transport-https \
     ca-certificates \
-    curl \
     software-properties-common \
     erlang \
     rabbitmq-server
