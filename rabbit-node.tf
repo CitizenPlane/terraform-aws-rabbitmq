@@ -10,6 +10,8 @@ data "template_file" "rabbit-node" {
     ERL_SECRET_COOKIE = var.erl_secret_cookie
     AWS_ACCESS_KEY    = var.aws_access_key
     AWS_SECRET_KEY    = var.aws_secret_key
+    RABBITMQ_VERSION  = var.rabbitmq_version
+    ERLANG_VERSION    = var.erlang_version
     CLUSTER_NAME      = "${var.cluster_fqdn}-${var.name}-${var.environment}"
   }
 }

@@ -59,6 +59,16 @@ variable "rabbit_volume_size" {
   description = "Attached EBS volume size in GB - this is where docker data will be stored"
 }
 
+variable "rabbitmq_version" {
+  description = "The version of the rabbitmq that you want install. To see all versions click this link: https://dl.bintray.com/rabbitmq/debian/dists/"
+  default     = "main" # rabbitmq-server-v3.6.x, rabbitmq-server-v3.7.x, rabbitmq-server-v3.8.x/
+}
+
+variable "erlang_version" {
+  description = "The version of the rabbitmq that you want install. To see all versions click this link: https://dl.bintray.com/rabbitmq-erlang/debian/dists/"
+  default     = "erlang" # erlang-16.x, erlang-19.x, erlang-20.x, erlang-21.x, erlang-22.x
+}
+
 # ------------------------------------------------------
 #  Network - VPC  parameters
 # ------------------------------------------------------
